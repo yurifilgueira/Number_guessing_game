@@ -8,11 +8,13 @@ fn main() -> io::Result<()>{
 
     let number: i32 = rng.gen_range(1..=100);
 
+    let mut count_tries: i32 = 0;
     while number >= 0 {
         print!("Insert a number between 1 and 100: ");
         io::stdout().flush()?;
         let mut guess = String::new();
 
+        count_tries += 1;
         io::stdin().read_line(&mut guess)
                             .expect("Fail to read input");
 
@@ -29,7 +31,7 @@ fn main() -> io::Result<()>{
                     println!("The number is greater. Try again!");
                 }
                 else {
-                    println!("Congratulations!");
+                    println!("Congratulations, you got it in {count_tries} tries!");
                     
                     break;
                 }
